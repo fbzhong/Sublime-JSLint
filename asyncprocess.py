@@ -17,16 +17,13 @@ class AsyncProcess(object):
 
     if self.proc.stdout:
       self.stdoutThread = threading.Thread(target=self.read_stdout)
-      self.stdoutThread.setDaemon(True)
       self.stdoutThread.start()
 
     if self.proc.stderr:
       self.stderrThread = threading.Thread(target=self.read_stderr)
-      self.stderrThread.setDaemon(True)
       self.stderrThread.start()
 
     self.pollThread = threading.Thread(target=self.poll)
-    self.pollThread.setDaemon(True)
     self.pollThread.start()
 
   def poll(self):
@@ -34,7 +31,7 @@ class AsyncProcess(object):
       if self.proc.poll() != None:
         sublime.set_timeout(functools.partial(self.terminate), 0)
         break
-      time.sleep(1)
+      time.sleep(0.1)
 
   def read_stdout(self):
     while self.listener.is_running:

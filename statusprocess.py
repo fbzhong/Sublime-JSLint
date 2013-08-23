@@ -11,7 +11,6 @@ class StatusProcess(object):
     self.msg = msg
     self.listener = listener
     myThread = threading.Thread(target=self.run_thread)
-    # myThread.setDaemon(True)
     myThread.start()
 
   def run_thread(self):
@@ -20,5 +19,5 @@ class StatusProcess(object):
       if len(progress) >= 10:
         progress = ""
       progress += "."
-      sublime.set_timeout(functools.partial(self.listener.update_status, self.msg, progress), 500)
+      sublime.set_timeout(functools.partial(self.listener.update_status, self.msg, progress), 0)
       time.sleep(0.1)
