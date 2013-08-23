@@ -1,9 +1,12 @@
 import os
-import threading
+try:
+  import thread
+except ImportError:
+  import threading
 import subprocess
 import functools
-import time
 import sublime
+import time
 
 class AsyncProcess(object):
   def __init__(self, cmd, listener):

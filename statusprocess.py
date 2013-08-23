@@ -1,4 +1,7 @@
-import threading
+try:
+  import thread
+except ImportError:
+  import threading
 import functools
 import time
 import sublime

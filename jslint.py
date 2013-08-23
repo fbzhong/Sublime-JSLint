@@ -2,9 +2,14 @@ import os
 import re
 import sublime
 import sublime_plugin
-from .edit import *
-from .statusprocess import *
-from .asyncprocess import *
+try:
+  from edit import *
+  from statusprocess import *
+  from asyncprocess import *
+except ImportError:
+  from .edit import *
+  from .statusprocess import *
+  from .asyncprocess import *
 
 RESULT_VIEW_NAME = 'jslint_result_view'
 SETTINGS_FILE = "sublime-jslint.sublime-settings"
